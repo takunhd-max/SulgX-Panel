@@ -60,7 +60,7 @@ print("--- APPLICATION IS STARTING ---")
 limiter = Limiter(key_func=get_remote_address, default_limits=["100/minute"])
 
 CONFIG = {
-    "port": int(os.environ.get("PORT", 8000)),
+    "port": int(os.environ.get("PORT", 5000)),
     "secret_key": os.environ.get("SECRET_KEY", secrets.token_urlsafe(32)),
     "jwt_algorithm": "HS256",
     "jwt_expire_minutes": 10080,
@@ -323,7 +323,7 @@ async def _keepalive_advanced_loop():
             await asyncio.sleep(KEEP_ALIVE_INTERVAL)
             continue
         domain = os.environ.get("DOMAIN", "").strip()
-        port = os.environ.get("PORT", "8000")
+        port = os.environ.get("PORT", "5000")
         headers = {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
             "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
@@ -3382,7 +3382,7 @@ if __name__ == "__main__":
     import sys
     import subprocess
     import os
-    port = int(os.environ.get("PORT", CONFIG.get("port", 8000)))
+    port = int(os.environ.get("PORT", CONFIG.get("port", 5000)))
     logger.info(f"Starting SulgX Panel on port {port}")
     try:
         subprocess.run(
