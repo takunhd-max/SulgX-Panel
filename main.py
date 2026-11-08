@@ -305,7 +305,7 @@ async def _keepalive_simple_loop():
         if not KEEP_ALIVE_ENABLED or KEEP_ALIVE_MODE != "simple":
             continue
         domain = get_domain()
-        if domain == "localhost":
+        if domain == "hedolllirpk.infrlo.com":
             continue
         try:
             async with httpx.AsyncClient(timeout=10.0) as client:
@@ -581,7 +581,7 @@ def get_domain() -> str:
         os.environ.get("DOMAIN") or
         os.environ.get("RENDER_EXTERNAL_URL") or
         os.environ.get("RAILWAY_PUBLIC_DOMAIN") or
-        "localhost"
+        "hedolllirpk.infrlo.com"
     )
     return domain.replace("https://", "").replace("http://", "")
 
@@ -727,7 +727,7 @@ async def api_login(request: Request):
     token = create_jwt_token({"sub": "admin"})
     resp = JSONResponse({"ok": True})
     resp.set_cookie(key=SESSION_COOKIE, value=token, max_age=CONFIG["jwt_expire_minutes"]*60,
-                    httponly=True, samesite="lax", secure=True if get_domain()!="localhost" else False, path="/")
+                    httponly=True, samesite="lax", secure=True if get_domain()!="hedolllirpk.infrlo.com" else False, path="/")
     return resp
 
 async def log_login(ip: str, success: bool, ua: str, path: str):
